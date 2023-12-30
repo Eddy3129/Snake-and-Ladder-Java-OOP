@@ -1,0 +1,269 @@
+import java.util.Random;
+
+public class Boat {
+    private String name;
+    private int row = 0;
+    private int col = 0;
+    private int score;
+    private boolean isWinner;
+    private int roll;
+    private Encounter encounter;
+
+    public void rollDice() {
+        Random r = new Random();
+        roll = r.nextInt(6) + 1;
+        col += roll; // Move horizontally (change this logic as needed)
+
+        // Logic to move to the next row if you reach the end of the current row
+        if (col >= 10) {
+            row++;
+            col -= 10;
+        }
+
+        System.out.printf("%s rolls a %d\n", name, roll);
+    }
+
+    public boolean isWinner() {
+        if (row >= 9 && col >= 9) {
+            System.out.printf("%s Wins!\n", name);
+            score++;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    public void setRow(int row) {
+            this.row = row;
+     }
+
+     public void setCol(int col) {
+            this.col = col;
+        }
+
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public int getCol() {
+        return col;
+    }
+}
+
+
+
+public class Current extends Encounter{
+	@Override
+	 public void encounter(String name, River river, int row, int col) {
+		 System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣴⣶⠾⠿⠿⠯⣷⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+	        System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣼⣾⠛⠁⠀⠀⠀⠀⠀⠀⠈⢻⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+	        System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣾⠿⠁⠀⠀⠀⢀⣤⣾⣟⣛⣛⣶⣬⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+	        System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⠟⠃⠀⠀⠀⠀⠀⣿⣿⠟⠉⠉⠉⠉⠛⠿⠟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+	        System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⡟⠋⠀⠀⠀⠀⠀⠀⠀⣿⡏⣤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+	        System.out.println("⠀⠀⠀⠀⠀⠀⠀⣠⡿⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣷⡍⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣤⣤⣤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+	        System.out.println("⠀⠀⠀⠀⠀⠀⣠⣼⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠷⣤⣤⣠⣤⣤⡤⡶⣶⢿⠟⠹⠿⠄⣿⣿⠏⠀⣀⣤⡦⠀⠀⠀⠀⣀⡄");
+	        System.out.println("⢀⣄⣠⣶⣿⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠓⠚⠋⠉⠀⠀⠀⠀⠀⠀⠈⠛⡛⡻⠿⠿⠙⠓⢒⣺⡿⠋⠁");
+	        System.out.println("⠉⠉⠉⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠁⠀\n");
+	        
+	        System.out.println(name + "have encountered the Great Water Flow!");
+	        
+	            if (row > 0) {
+	                river.getBoat(name).setRow(row + 5);
+	            }
+	        }
+	
+	}
+
+
+public class Encounter {
+    public void encounter(String name, River river, int row, int col) {
+		System.out.println(name + " have encountered something!");
+		
+}
+}
+
+public class Game_test {
+
+	public static void main(String[] args) {
+		Game game = new Game();
+		game.start();
+
+
+	}
+
+}
+import java.util.Scanner;
+
+public class Game {
+    River river = new River();
+    Player player1 = new Player();
+
+    public void start() {
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println("Please enter player name");
+        player1.setName(scan.nextLine());
+
+        river.boat1.setName(player1.getName());
+        river.boat2.setName("Bot");
+
+        river.printRiver(player1);
+
+        while (!river.boat1.isWinner() && !river.boat2.isWinner()) {
+            System.out.println("Please enter r to roll the dice");
+            String input = scan.nextLine();
+            if (input.equalsIgnoreCase("r")) {
+                river.boat1.rollDice();
+                if (river.getObstacle(river.boat1.getRow(), river.boat1.getCol()).equals(river.current)) {
+                    Encounter encounter = new Encounter();
+                    encounter.encounter(player1.getName(), river, river.boat1.getRow(), river.boat1.getCol());
+                }
+                river.printRiver(player1);
+
+                if (!river.boat1.isWinner()) {
+                    river.boat2.rollDice();
+                    if (river.getObstacle(river.boat2.getRow(), river.boat2.getCol()).equals(river.current)) {
+                        Encounter encounter = new Encounter();
+                        encounter.encounter("Bot", river, river.boat2.getRow(), river.boat2.getCol());
+                    }
+                    river.printRiver(player1);
+                }
+            }
+        }
+        scan.close();
+    }
+}
+
+
+public class Monster extends Encounter{
+	@Override
+	  public void encounter(String name, River river, int row, int col) {
+		System.out.println("                _ ___                /^^\\ /^\\  /^^\\_");
+	        System.out.println("    _          _@)@) \\            ,,/ '` ~ `'~~ ', `\\.");
+	        System.out.println("  _/o\\_ _ _ _/~`.`...'~\\        ./~~..,'`','',.,' '  ~:");
+	        System.out.println(" / `,'.~,~.~  .   , . , ~|,   ,/ .,' , ,. .. ,,.   `,  ~\\_");
+	        System.out.println("( ' _' _ '_` _  '  .    , `\\_/ .' ..' '  `  `   `..  `,   \\_");
+	        System.out.println(" ~V~ V~ V~ V~ ~\\ `   ' .  '    , ' .,.,''`.,.''`.,.``. ',   \\_");
+	        System.out.println("  _/\\ /\\ /\\ /\\_/, . ' ,   `_/~\\_ .' .,. ,, , _/~\\_ `. `. '.,  \\_");
+	        System.out.println(" < ~ ~ '~`'~'`, .,  .   `_::: \\_ '      `_/ ::: \\_ `.,' . ',  \\_");
+	        System.out.println("  \\ ' `_  '`_    _    ',/ _::_::_ \\ _    _/ _::_::_ \\   `.,'.,`., \\-,-,-,_,_,");
+	        System.out.println("   `'~~ `'~~ `'~~ `'~~  \\(_)(_)(_)/  `~~' \\(_)(_)(_)/ ~'`\\_.._,._,'_;_;_;_;_;");
+	
+	        System.out.println(name + "have encountered the Terminator Alligator!");
+            if (row > 0) {
+                river.getBoat(name).setRow(row - 10);
+            }
+	}
+}
+public class Player {
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+import java.util.Random;
+
+public class River {
+    private int size = 10; // size of the board
+    private String empty = "[ ]";
+    private char trap = '#';
+    protected char current = 'C';
+    protected String[][] riverBoard = new String[size][size];
+    Boat boat1 = new Boat();
+    Boat boat2 = new Boat();
+
+        public River() {
+            Random random = new Random();
+            for (int i = 0; i < size; i++) {
+                for (int j = 0; j < size; j++) {
+                    int randNum = random.nextInt(8);
+                    if (randNum == 0) {
+                        riverBoard[i][j] = "[" + current + "]";
+                    } else if (randNum == 1) {
+                        riverBoard[i][j] = "[" + trap + "]";
+                    } else {
+                        riverBoard[i][j] = empty;
+                    }
+                }
+            }
+        }
+
+        public String getObstacle(int row, int col) {
+            return riverBoard[row][col];
+        }
+
+        public void printRiver(Player player1) {
+            System.out.println();
+            for (int i = 0; i < size; i++) {
+                for (int j = 0; j < size; j++) {
+                    if (i == boat1.getRow() && j == boat1.getCol()) {
+                        System.out.print("[" + player1.getName() + "]");
+                    } else if (i == boat2.getRow() && j == boat2.getCol()) {
+                        System.out.print("[B]");
+                    } else {
+                        System.out.print(riverBoard[i][j]);
+                    }
+                }
+                System.out.println();
+            }
+            System.out.println();
+            System.out.printf("Position of %s: (%d, %d)\n", player1.getName(), boat1.getRow() + 1, boat1.getCol() + 1);
+            System.out.printf("Position of Bot: (%d, %d)\n", boat2.getRow() + 1, boat2.getCol() + 1);
+            System.out.println();
+        }
+
+        public int getSize() {
+            return size;
+        }
+
+        public Boat getBoat(String name) {
+            return name.equals(boat1.getName()) ? boat1 : boat2;
+        }
+    }
+	
+
+public class Squidward extends Encounter{
+	@Override
+	 public void encounter(String name, River river, int row, int col) {
+		   System.out.println("⠀⠀⠀⠀⠀⠀⠀⢀⣠⠤⠖⠒⠛⠋⠉⠙⠛⠒⠶⢤⣄⡀⠀⠀⠀⠀⠀⠀⠀");
+	        System.out.println("⠀⠀⠀⠀⠀⠀⣠⠶⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⢄⡀⠀⠉⠳⣤⡀⠀⠀⠀⠀");
+	        System.out.println("⠀⠀⠀⠀⢀⡼⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢆⠀⠀⠈⠻⣄⠀⠀⠀");
+	        System.out.println("⠀⠀⠀⢀⡞⠀⠀⠀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⡀⠀⠈⡄⠀⠀⠀⠹⡄⠀⠀");
+	        System.out.println("⠀⠀⠀⡼⠀⠀⠀⠀⠐⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⡄⠀⡅⠀⠀⠀⠀⢧⠀⠀");
+	        System.out.println("⠀⠀⢀⡇⠀⠀⠀⠀⢠⠟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠳⠀⠀⠀⠀⠀⢧⠀");
+	        System.out.println("⠀⠀⢸⡇⠀⠀⠀⠀⢸⡀⠀⠀⠀⠀⠀⠀⠀⠀⡠⠊⠀⠀⠀⣢⣀⣀⡤⣢⠟⠀");
+	        System.out.println("⠀⠀⠈⡇⠀⠀⠀⠀⠀⢑⡤⠀⠀⠈⡖⠒⣻⣭⣬⢆⠀⢸⠏⠲⣿⡗⡏⠣⣄⠀");
+	        System.out.println("⠀⠀⠀⢹⡄⠀⠀⠀⢀⡏⠀⠈⠵⠂⢳⣁⠀⢙⣡⢎⠀⠈⠙⠲⡤⠚⠀⠀⠈⢦");
+	        System.out.println("⠀⠀⠀⠀⠹⣄⠀⠀⠸⡄⠀⠀⠀⠀⠀⠀⠉⠁⠤⠊⠀⠀⠀⠀⡏⠁⠀⠀⠀⢸");
+	        System.out.println("⠀⠀⠀⠀⠀⠈⠙⡖⠤⠻⢤⣀⣀⣀⣀⠀⠀⠀⡠⠤⠀⠀⠀⣸⡁⠀⠀⢀⡴⠃");
+	        System.out.println("⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⢰⠇⠀⠀⠈⡇⢀⠔⢇⠠⡄⠀⠀⢏⢃⠒⡞⠉⠀⠀");
+	        System.out.println("⠀⠀⠀⠀⠀⠀⢀⡏⠀⠀⣾⠀⠀⠀⠀⠁⠎⠀⠀⠀⠘⠦⣤⡼⠈⣸⠀⠀⠀⠀");
+	        System.out.println("⠀⠀⠀⠀⠀⢠⡞⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀⠀⢀⡔⠉⠳⠊⠢⠀⡏⠀⠀⠀⠀");
+	        System.out.println("⠀⠀⠀⣀⡴⠋⠀⠀⠀⠀⣧⠀⠀⠀⠀⠀⠀⠀⢻⠐⠒⠤⠔⡹⠀⣇⠀⠀⠀⠀");
+	        System.out.println("⢀⡴⠞⠁⠀⠀⠀⠀⢰⠀⢹⣀⠀⠀⠀⠀⠀⠀⠀⠑⠤⠤⠊⠀⠀⠹⣄⠀⠀⠀");
+	        System.out.println("⠉⠳⣄⠀⠀⠀⠀⠀⠀⡇⠀⠉⠳⣄⡀⠀⠀⠀⠀⠀⠐⠢⠊⠀⢂⡀⠈⠳⣄⠀");
+	        System.out.println("⠀⠀⠈⢳⡄⠀⠀⠀⠀⢰⡀⠀⠀⠈⠙⢦⡀⠀⠀⠀⠀⠀⠀⠀⠀⢱⡀⠀⣸⠀");
+	        System.out.println("⠀⠀⠀⠀⠙⢦⡔⠥⡀⠀⣇⠀⣄⠀⢀⠀⠙⠦⣄⣀⠀⠀⠀⠀⣀⡼⠤⠖⠃⠀");
+	        System.out.println("⠀⠀⠀⠀⠀⠀⠙⢾⣐⠐⢪⣖⡓⡤⢿⠧⡔⡉⢄⡽⠏⠙⠛⠉⠁⠀⠀⠀⠀⠀");
+	        System.out.println("⠀⠀⠀⠀⠀⠀⠀⠀⠉⠓⠧⣴⣵⣁⣛⣴⠵⠞⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀");
+	        
+	        System.out.println(name + " have encountered Lipstick Squidward!");
+	        river.getBoat(name).setRow(col - 1);
+	        
+	}
+}
